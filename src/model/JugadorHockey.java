@@ -1,12 +1,12 @@
 package model;
 
-public class JugadorHockey extends Persona implements DesplazarseEnPistaConPalo {
-    protected String nombre;
+public class JugadorHockey extends Persona implements IDesplazarseEnPistaConPalo, IRealizarJugada {
     protected int numero;
     protected Posicion posicion;
 
-    public JugadorHockey(String nombre, int edad, Posicion posicion) {
+    public JugadorHockey(String nombre, int edad, int numero, Posicion posicion) {
         super(nombre, edad);
+        this.numero = numero;
         this.posicion = posicion;
     }
 
@@ -18,12 +18,13 @@ public class JugadorHockey extends Persona implements DesplazarseEnPistaConPalo 
         return posicion.toString();
     }
 
-
+    @Override
     public String desplazarseConPalo() {
-        if (posicion != Posicion.PORTERO) {
-            return nombre + " se desplaza en la pista con el palo.";
-        } else {
-            return nombre + " es el portero y no se desplaza más allá de media pista.";
-        }
+        return "Jugador numero " + numero + " se desplaza en la pista con el palo.";
+    }
+
+    @Override
+    public String realizarJugada(int numeroJugador, int numeroReceptor) {
+        return "Jugador numero " + numeroJugador + " se la pasa a Jugador numero " + numeroReceptor;
     }
 }
